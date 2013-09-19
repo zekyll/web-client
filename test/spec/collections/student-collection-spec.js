@@ -23,4 +23,16 @@ describe('StudentCollection', function () {
 
         expect(students.url()).toBe(config.api.main.root + 'students');
     });
+    
+	it('should return new collection with correct students filtered byPartiaName', function () {
+        var studentModels = [];
+        studentModels.push( new codebrowser.model.Student({'name' : 'abba'}) );
+        studentModels.push( new codebrowser.model.Student({'name' : 'abca'}) );
+        studentModels.push( new codebrowser.model.Student({'name' : 'abbba'}) );
+        
+        students = new codebrowser.collection.StudentCollection(studentModels);
+        
+        expect(students.byPartialName('bb').length).toBe(2);
+        expect(students.length).toBe(3);
+    });
 });

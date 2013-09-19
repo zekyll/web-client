@@ -17,5 +17,14 @@ codebrowser.collection.StudentCollection = Backbone.Collection.extend({
             this.courseId = options.courseId;
             this.exerciseId = options.exerciseId;
         }
+    },
+	
+	byPartialName: function(queryString) {
+		
+        var filtered = this.filter(function(student) {
+            return (student.get('name').indexOf(queryString) !== -1);
+        });
+        
+        return new codebrowser.collection.StudentCollection(filtered);
     }
 });
