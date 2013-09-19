@@ -28,6 +28,9 @@ codebrowser.view.StudentsView = Backbone.View.extend({
         var output = this.template(attributes);
 
         this.$el.html(output);
+        
+        // bind events also on re-render
+        this.delegateEvents();
     },
     
     
