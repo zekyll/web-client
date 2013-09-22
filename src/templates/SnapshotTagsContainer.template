@@ -23,7 +23,10 @@
     <form>
 
         <input type='text' data-id='tag' id='appendedInputButton' placeholder='New tag…'>
-        <button type='submit' data-action='create' class='btn'>+</button>
+
+        <button title='Add new tag to this answer' type='submit' data-action='create' class='btn'><i class='icon-large icon-tag-answer icon-gray'></i></button>
+
+        <button title='Add new tag to this snapshot' type='submit' data-action='create' class='btn'><i class='icon-large icon-tag-snapshot icon-gray'></i></button>
 
     </form>
 

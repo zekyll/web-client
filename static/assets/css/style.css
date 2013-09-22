@@ -68,7 +68,25 @@ a .icon-gray:hover {
 
     background-image: url('../img/diff.png');
     background-position: center;
+}
 
+.icon-large {
+
+    margin: -1px -3px -1px -3px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-tag-answer {
+
+    background-image: url('../img/tag-answer.png');
+    background-position: center;
+}
+
+.icon-tag-snapshot {
+
+    background-image: url('../img/tag-snapshot.png');
+    background-position: center;
 }
 
 /* Responsiveness - Width */
@@ -608,7 +626,7 @@ ul.selection a:hover {
 
 #snapshot-tags-container [data-id='tag'] {
 
-    width: 160px;
+    width: 120px;
 
 }
 
