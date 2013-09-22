@@ -5,7 +5,8 @@ codebrowser.view.SnapshotTagsView = Backbone.View.extend({
 
     events: {
 
-        'click [data-action="create"]': 'create',
+        'click [data-action="create-tag"]': 'createTag',
+        'click [data-action="create-snapshot-tag"]': 'createSnapshotTag',
         'click [data-action="delete"]': 'delete'
 
     },
@@ -65,7 +66,7 @@ codebrowser.view.SnapshotTagsView = Backbone.View.extend({
 
     /* Actions */
 
-    create: function (event) {
+    createTag: function (event, snapshotTag) {
 
         event.preventDefault();
 
@@ -80,18 +81,22 @@ codebrowser.view.SnapshotTagsView = Backbone.View.extend({
         // Create new tag name if necessary.
         var tagName = codebrowser.model.TagName.findOrCreate({ name : text });
 
-        // New tag
-        var tag = new codebrowser.model.Tag({ tagName: tagName,
-                                              student: {id: self.snapshot.get('studentId')},
-                                              course: {id: self.snapshot.get('courseId')},
-                                              exercise: {id: self.snapshot.get('exerciseId')}});
+        // Create new tag
+        var attribs = { tagName: tagName,
+                        student: { id: self.snapshot.get('studentId') },
+                        course: { id: self.snapshot.get('courseId') },
+                        exercise: { id: self.snapshot.get('exerciseId') }};
+        if (snapshotTag) {
+            attribs.snapshot = { id: self.snapshot.id };
+        }
+
+        var tag = new codebrowser.model.Tag(attribs);
 
         // Save tag
         tag.save({ tagName: tagName }, {
 
             success: function () {
 
-                // Add to collection
                 self.collection.add(tag, { at: 0 });
             },
 
@@ -100,6 +105,10 @@ codebrowser.view.SnapshotTagsView = Backbone.View.extend({
                 throw new Error('Failed tag save.');
             }
         });
+    },
+
+    createSnapshotTag: function (event) {
+        this.createTag(event, true);
     },
 
     'delete': function (event) {
