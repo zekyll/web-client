@@ -77,15 +77,20 @@ a .icon-gray:hover {
     height: 16px;
 }
 
-.icon-tag-answer {
+.icon-smallmargin {
 
-    background-image: url('../img/tag-answer.png');
+    margin: 0px -5px 0px -5px;
+}
+
+.icon-answer {
+
+    background-image: url('../img/answer.png');
     background-position: center;
 }
 
-.icon-tag-snapshot {
+.icon-snapshot {
 
-    background-image: url('../img/tag-snapshot.png');
+    background-image: url('../img/snapshot.png');
     background-position: center;
 }
 
@@ -626,7 +631,7 @@ ul.selection a:hover {
 
 #snapshot-tags-container [data-id='tag'] {
 
-    width: 120px;
+    width: 130px;
 
 }
 
