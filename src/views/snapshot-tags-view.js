@@ -24,8 +24,24 @@ codebrowser.view.SnapshotTagsView = Backbone.View.extend({
 
     render: function () {
 
+        var self = this;
+
+        var showSnapshotTags;
+
+        this.collection.each(function(tag) {
+
+            var visible = !tag.get('snapshot') || tag.get('snapshot').id === self.snapshot.id;
+            tag.set('visible', visible);
+            showSnapshotTags |= tag.get('snapshot') && visible;
+        });
+
         // Template
-        var output = $(this.template({ tags: this.collection.toJSON() }));
+        var context = { tags: this.collection.toJSON() };
+        if (showSnapshotTags) {
+            context.showSnapshotTags = true;
+        }
+
+        var output = $(this.template(context));
 
         this.$el.html(output);
     },
